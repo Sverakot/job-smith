@@ -1,0 +1,27 @@
+# Job Search — {{ date }}
+
+Jobs in database: {{ s.total }} | New in last 24h: {{ s.new_24h }} | Filtered by rules: {{ s.filtered }} | LLM-scored: {{ s.scored }}
+Strong matches: {{ s.strong_match }} | Matches: {{ s.match }} | Weak: {{ s.weak_match }} | Rejected: {{ s.reject }}
+{% if failed_runs %}
+**Failed sources (last 24h):** {% for r in failed_runs %}{{ r.target }}{% if not loop.last %}, {% endif %}{% endfor %}
+{% endif %}
+## Top matches (score ≥ {{ min_score }})
+{% for j in jobs %}
+### {{ loop.index }}. {{ j.title }} — {{ j.company }}{% if j.is_new %} 🆕{% endif %}
+
+**Score: {{ j.score }}/100** ({{ j.decision | replace("_", " ") }}) · skills {{ "%.2f"|format(j.skills) }} · experience {{ "%.2f"|format(j.experience) }} · location {{ "%.2f"|format(j.location_score) }} · goals {{ "%.2f"|format(j.career_goal) }}
+Location: {{ j.location or "not stated" }} · Sources: {{ j.sources }}
+
+Why it fits:
+{% for r in j.reasons %}- {{ r }}
+{% endfor %}
+Potential problems:
+{% for c in j.concerns %}- {{ c }}
+{% else %}- none noted
+{% endfor %}
+Apply: {{ j.url }}
+
+---
+{% else %}
+No jobs above the threshold yet. Try `job-smith match`, lower `report_min_score`, or widen the profile.
+{% endfor %}

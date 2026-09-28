@@ -1,0 +1,22 @@
+# Paths are relative to the repo root.
+db_path: data/jobs.db
+raw_dir: raw
+profile_dir: data
+reports_dir: reports
+companies_file: config/companies.yaml
+
+# Local LLM (Ollama). Pick a model that fits your VRAM:
+#   ~8 GB  -> qwen2.5:7b   |  ~16 GB -> qwen2.5:14b
+ollama_url: http://localhost:11434
+ollama_model: qwen2.5:7b
+llm_timeout_s: 300
+llm_num_ctx: 8192
+max_description_chars: 6000
+
+# Discovery politeness
+http_timeout_s: 30
+request_delay_s: 1.0
+
+# Report
+report_min_score: 60
+report_top_n: 25

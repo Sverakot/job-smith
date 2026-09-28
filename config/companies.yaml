@@ -1,0 +1,13 @@
+# Companies to query via their public ATS job-board APIs.
+#
+# How to find the slug: open the company's careers page and look at the job links.
+#   boards.greenhouse.io/<slug>  or  job-boards.greenhouse.io/<slug>  -> ats: greenhouse
+#   jobs.lever.co/<slug>                                              -> ats: lever
+#   jobs.ashbyhq.com/<slug>                                           -> ats: ashby
+#
+# The entries below are smoke-test examples; replace them with your own targets.
+# A wrong slug is logged as a failed run and does not stop the others.
+companies:
+  - {name: Anthropic, ats: greenhouse, slug: anthropic}
+  - {name: Palantir,  ats: lever,      slug: palantir}
+  - {name: OpenAI,    ats: ashby,      slug: openai}
